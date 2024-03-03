@@ -31,6 +31,10 @@ class AnimeController extends Controller
 
         $anime = Anime::create($validated);
 
+        if ($request->has('genres')) {
+            $anime->genres()->sync($request->input('genres'));
+        }
+
         return response()->json(new AnimeResource($anime), 201);
     }
 

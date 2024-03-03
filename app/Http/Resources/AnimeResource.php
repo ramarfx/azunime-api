@@ -20,7 +20,7 @@ class AnimeResource extends JsonResource
             'description' => $this->description,
             'episode' => $this->episode,
             'image' => $this->image,
-            'genre' => GenreResource::collection($this->whenLoaded('genres'))
+            'genre' => GenreResource::collection($this->genres)
         ];
     }
 }
