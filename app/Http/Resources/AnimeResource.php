@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\GenreResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AnimeResource extends JsonResource
@@ -19,6 +20,7 @@ class AnimeResource extends JsonResource
             'description' => $this->description,
             'episode' => $this->episode,
             'image' => $this->image,
+            'genre' => GenreResource::collection($this->whenLoaded('genres'))
         ];
     }
 }

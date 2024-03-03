@@ -18,7 +18,7 @@ class AnimeController extends Controller
      */
     public function index()
     {
-        $anime = Anime::all();
+        $anime = Anime::with('genres')->get();
         return AnimeResource::collection($anime);
     }
 
