@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/anime', function() {
+    $data = Http::get('http://azunime.test/api/anime');
+
+    $array = json_decode($data, true);
+    $animes = $data['data'];
+
+    return view('anime', compact('animes'));
 });

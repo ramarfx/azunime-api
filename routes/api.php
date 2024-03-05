@@ -22,5 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::apiResource('anime', AnimeController::class);
+Route::apiResource('anime', AnimeController::class)->middleware('auth:sanctum');
