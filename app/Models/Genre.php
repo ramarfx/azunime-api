@@ -13,6 +13,8 @@ class Genre extends Model
         'name'
     ];
 
+    public $timestamps = false;
+
     public function animes()
     {
         return $this->belongsToMany(Anime::class, 'anime_genres');
