@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 255);
             $table->text('description')->nullable();
             $table->integer('episode')->default(12);
-            $table->string('image', 255)->default('https://via.placeholder.com/200x300.png');
+            $table->string('image', 255)->default(null);
             $table->timestamps();
         });
     }

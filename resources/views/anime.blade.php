@@ -20,6 +20,7 @@
                 <td>{{ $anime['title'] }}</td>
                 <td>{{ $anime['description'] }}</td>
                 <td>{{ $anime['episode'] }}</td>
+                <td><img src="{{ $anime['image'] }}" alt=""></td>
             </tr>
         @endforeach
     </table>

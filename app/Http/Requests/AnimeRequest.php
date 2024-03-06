@@ -25,7 +25,8 @@ class AnimeRequest extends FormRequest
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'episode' => 'required|integer',
-            'image' => 'nullable|image',
+            'genres' => 'required',
+            'image' => 'nullable',
         ];
     }
 }

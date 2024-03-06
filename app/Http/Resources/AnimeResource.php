@@ -16,11 +16,13 @@ class AnimeResource extends JsonResource
 
     public function toArray(Request $request): array
     {
+        $image = $this->image ? asset('/storage/' . $this->image) : null;
+        
         return [
             'title' => $this->title,
             'description' => $this->description,
             'episode' => $this->episode,
-            'image' => $this->image,
+            'image' => $image,
             'genre' => GenreResource::collection($this->genres)
         ];
     }

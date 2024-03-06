@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AnimeResource;
 use App\Http\Requests\UpdateAnimeRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AnimeController extends Controller
@@ -29,6 +30,11 @@ class AnimeController extends Controller
     public function store(AnimeRequest $request)
     {
         $validated = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->storePublicly('images', 'public');
+            $validated['image'] = $image;
+        }
 
         $genres = Genre::whereIn('name', $request->input('genres'))->pluck('id');
         $anime = Anime::create($validated);
@@ -69,5 +75,11 @@ class AnimeController extends Controller
         $anime->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function getImage()
+    {
+        $image = Storage::disk('public')->get('images/1.jpg');
+        return response($image, 200)->header('Content-Type', 'image/jpg');
     }
 }
